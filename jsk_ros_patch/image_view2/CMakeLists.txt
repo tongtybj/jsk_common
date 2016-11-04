@@ -26,7 +26,7 @@ add_service_files(
 include_directories(include ${catkin_INCLUDE_DIRS})
 
 # Image viewers
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 3.1 REQUIRED)
 add_executable(image_view2 image_view2.cpp image_view2_node.cpp)
 target_link_libraries(image_view2 ${OpenCV_LIBS} ${catkin_LIBRARIES})
 add_dependencies(image_view2 ${PROJECT_NAME}_gencpp ${PROJECT_NAME}_gencfg)
@@ -37,7 +37,7 @@ find_package(Boost REQUIRED COMPONENTS signals)
 include_directories(${Boost_INCLUDE_DIRS})
 find_package(PCL REQUIRED)
 include_directories(${PCL_INCLUDE_DIRS})
-target_link_libraries(points_rectangle_extractor ${Boost_LIBRARIES} ${catkin_LIBRARIES})
+target_link_libraries(points_rectangle_extractor ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${OpenCV_LIBS})
 add_dependencies(points_rectangle_extractor ${PROJECT_NAME}_gencpp)
 
 generate_messages(DEPENDENCIES geometry_msgs std_msgs)

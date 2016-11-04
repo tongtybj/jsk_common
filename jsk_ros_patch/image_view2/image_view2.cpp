@@ -94,7 +94,7 @@ namespace image_view2{
     image_pub_ = it.advertise("image_marked", 1);
     local_image_pub_ = local_it.advertise("marked", 1);
     
-    image_sub_ = it.subscribe(camera, 1, &ImageView2::imageCb, this, transport);
+    image_sub_ = it.subscribe(camera, 1, &ImageView2::imageCb, this, image_transport::TransportHints(transport, ros::TransportHints().udp()));
     info_sub_ = nh.subscribe(camera_info, 1, &ImageView2::infoCb, this);
     marker_sub_ = nh.subscribe(marker_topic_, 10, &ImageView2::markerCb, this);
     event_sub_ = local_nh.subscribe(camera + "/event", 100, &ImageView2::eventCb, this);
